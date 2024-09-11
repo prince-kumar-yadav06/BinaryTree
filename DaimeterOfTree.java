@@ -54,6 +54,41 @@ public class BinaryTree{
 
         return Dai3;
     }
+    static class TreeInfo{ //  T.C = O(N)
+        int height;
+        int Daimeter;
+        // TreeInfo left;
+        // TreeInfo right;
+
+        TreeInfo(int dm,int ht){
+            this.Daimeter=dm;
+            this.height=ht;
+        }
+    }
+    public static TreeInfo FindDaim(Node root){
+
+        // base case 
+        if(root == null ){
+            return new TreeInfo(0,0);
+        }
+
+        // step 1
+        TreeInfo left=FindDaim(root.left);  // find left node
+        TreeInfo right=FindDaim(root.right);   // find right node
+
+        // Step 2 find heigth
+        int myheight=Math.max(left.height,right.height)+1;
+
+        // step 3
+        int daim1=left.Daimeter;
+        int daim2=right.Daimeter;
+        int daim3=left.height + right.height + 1;
+
+        int fianalDaim=Math.max(daim3,Math.max(daim1,daim2)) ;
+
+        return new TreeInfo(fianalDaim, myheight);
+        
+    }
     public static void main(String args[]){
 
         // int arr[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
@@ -65,5 +100,7 @@ public class BinaryTree{
 
        System.out.println(Daimeter(root));
 
+        // find Daimeter with O(n)
+   System.out.println(FindDaim(root).Daimeter);
     }
 }
