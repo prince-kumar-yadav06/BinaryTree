@@ -1,3 +1,4 @@
+package BinaryTree;
 public class BalancedTree {
     static class TreeNode{
         int data;
